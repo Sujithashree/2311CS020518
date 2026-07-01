@@ -1,4 +1,4 @@
-const TOKEN = 'YOUR_ACCESS_TOKEN';
+const TOKEN = 'xpQddd';
 
 export async function Log(stack, level, pkg, message) {
   try {

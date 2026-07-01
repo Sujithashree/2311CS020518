@@ -1,29 +1,26 @@
+import { Chip, Stack } from '@mui/material';
+
 function Filter({ activeFilter, onChange }) {
   const filters = [
     { key: 'all', label: 'All' },
-    { key: 'unread', label: 'Unread' },
-    { key: 'priority', label: 'Priority' },
+    { key: 'placement', label: 'Placement' },
+    { key: 'result', label: 'Result' },
+    { key: 'event', label: 'Event' },
   ];
 
   return (
-    <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
+    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
       {filters.map((filter) => (
-        <button
+        <Chip
           key={filter.key}
+          label={filter.label}
+          clickable
+          color={activeFilter === filter.key ? 'primary' : 'default'}
+          variant={activeFilter === filter.key ? 'filled' : 'outlined'}
           onClick={() => onChange(filter.key)}
-          style={{
-            padding: '0.5rem 0.9rem',
-            borderRadius: '999px',
-            border: activeFilter === filter.key ? '1px solid #2563eb' : '1px solid #d1d5db',
-            background: activeFilter === filter.key ? '#dbeafe' : '#fff',
-            color: '#111827',
-            cursor: 'pointer',
-          }}
-        >
-          {filter.label}
-        </button>
+        />
       ))}
-    </div>
+    </Stack>
   );
 }
 

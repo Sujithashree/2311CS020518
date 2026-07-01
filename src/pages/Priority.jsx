@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { fetchPriorityNotifications } from '../api/notificationApi';
 import NotificationCard from '../components/NotificationCard';
 import { Log } from '../utils/logger';
@@ -26,8 +27,14 @@ function PriorityPage() {
 
   return (
     <section>
-      <h3 style={{ marginTop: 0 }}>Priority alerts</h3>
-      {loading && <p>Loading priority notifications...</p>}
+      <Typography variant="h5" sx={{ mb: 1 }}>
+        Priority alerts
+      </Typography>
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+          <CircularProgress />
+        </Box>
+      )}
       {!loading && notifications.map((notification) => (
         <NotificationCard key={notification.id} notification={notification} onMarkRead={() => {}} />
       ))}
